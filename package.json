@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "studio": "bun prisma studio"
+    "studio": "bun prisma studio",
+    "start:dev": "sh dev.sh"
   },
   "dependencies": {
     "@prisma/client": "5.13.0",

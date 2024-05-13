@@ -1,19 +1,19 @@
 # docker-compose.dev.yml
-version: '3.7'
+version: '3.8'
 
 services:
   next-app:
     container_name: next-app
     build:
       context: .
-      dockerfile: ./docker/next-app/dev.Dockerfile
+      dockerfile: docker/next-app/dev.Dockerfile
     # Envrionment variables based on the .env file
     env_file:
-      - .env
+      - dev.env
     # Environment variables directly in the docker-compose file
     environment:
       POSTGRES_ADDR: postgres
-      POSTGRES_DATABASE: twitch_clone
+      POSTGRES_DATABASE: next_app
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public&connect_timeout=500
@@ -42,7 +42,7 @@ services:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
       test:
-        ["CMD", "pg_isready", "-U", "postgres", "-d", "twitch_clone"]
+        ["CMD", "pg_isready", "-U", "postgres", "-d", "next_app"]
       interval: 5s
       timeout: 10s
       retries: 5
